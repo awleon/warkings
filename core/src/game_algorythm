@@ -1,0 +1,39 @@
+Abre
+WHILE 3 segundos DO
+    Splash
+END;
+
+IF não existe conta THEN
+    Mostra introdução
+    Tela de cadastro de conta
+    Grava conta
+    Mostra tutorial inicial
+FIM
+
+Mostra visão do castelo
+    Barra de recursos com: Ouro, Pedra, Madeira, Aço
+    Botão de visão do reino
+        Ao clicar num ponto abre opções:
+            "Enviar expedição" (Exercito, recursos, espião, arquiteto)
+            "Fazer guarda"
+        Ao clicar em outra vila abre opções:
+            "Enviar expedição" (Exercito, recursos, espião, arquiteto)
+            "Atacar"
+    Botão de contratar
+        Trabalhadores
+        Piqueiros
+        Infantaria
+        Arqueiros
+        Cavalaria
+        Arquiteto
+        Mago
+
+
+
+PAREI EM:
+   acabei de setar stages com porcentagem - testar. testado OK! Act funcionando tb!
+ - tentar carregar 3x3 tiles
+    - detectar deslogamento xy
+ - ia tentar alterar a função de pinch pra touch nos actors
+ - tentar um botao afetar outro
+ - corrigir o bug do fundo verde sumindo, já que ele esta na esquerda. Desenhar ele no meio realinhando à meia-esquerda.

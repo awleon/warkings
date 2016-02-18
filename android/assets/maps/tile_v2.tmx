@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="30" height="30" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="tiles4_v3" tilewidth="64" tileheight="64">
+  <image source="../tiles4_v3.png" trans="e9ede9" width="448" height="256"/>
+ </tileset>
+ <layer name="grama" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzNlUsKwDAIRIWsev8Ldy8xjDpjspCQIr5O/C0zWw37ipaJ32VluQxOlqtgvsydzGeV5WvQn7sa3X1n6vB6ontGd5V7iqNgIjFRH/V8Q/VW369bz68b0kMKLUj+J+qj61dlM/zYbFVfZGbVLe5Ev0aznPUuSG4Z/xzVjKJXEC47h5W9qs7fSbvaTvtzao9OMafsB05ZGjU=
+  </data>
+ </layer>
+ <layer name="florestas" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
+  </data>
+ </layer>
+</map>

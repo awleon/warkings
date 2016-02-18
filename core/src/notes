@@ -1,0 +1,106 @@
+Virar horizontal Ctrl+F11
+
+
+Texture é a imagem crua;
+Sprite é um layer.
+
+Screen is a nice class that provides all the same methods you're used to in your ApplicationListener
+class, but has the added benefit of being able to be called by the Game extending class as we've
+done above.
+The Game class implements the ApplicationListener interface and is just a class that is designed to
+make it easy to switch between different screens.
+
+
+
+    https://www.youtube.com/watch?v=Bz3xsCTwNFs
+Usually for the task of UI you would use an extra scene2d Stage and implement custom subclasses
+Actor which you add to the Stage and set their fixed position via Actor.setPosition(). There are
+already several predefined UI elements in the scene2d.ui package. To simulate a healthbar you could
+either use a ProgressBar, or you implement your own HealthBar extends Actor, which renders a Sprite
+of your choice.
+The stage is stationary by default and has its own Camera. As long as you do not manipulate that
+camera anyhow, you can just draw the stage with all elements via stage.draw() and it will always
+remain at the same place (what you would expect from an ingame HUD).
+
+
+Map
+    MapLayers[]
+        MapLayer
+            MapObjects[]
+                MapObject
+
+
+GestureDetector -> InputAdapter -> InputProcessor
+
+
+AndroidLauncher.java
+    config.useImmersiveMode = true; //Custom
+
+
+sudo vi /etc/udev/rules.d/51-android.rules
+    SUBSYSTEM=="usb", ATTR{idVendor}=="18d1",  ATTR{idProduct}=="4ee1", MODE="0666", GROUP="plugdev"
+sudo chmod a+r /etc/udev/rules.d/51-android.rules
+vi /home/alexandre/.android/adb_usb.ini
+    0x18d1
+    Pluga
+lsusb
+sudo service udev restart
+ls -l /dev/bus/usb/002/005
+sudo chmod 666 /dev/bus/usb/002/005
+sudo chgrp plugdev /dev/bus/usb/002/005
+$ANDROID_SDK_ROOT/platform-tools/adb kill-server
+$ANDROID_SDK_ROOT/platform-tools/adb start-server
+$ANDROID_SDK_ROOT/platform-tools/adb devices
+
+
+    Adicionando no Git
+sudo apt-get install git
+git config --global user.name "awleon"
+git config --global user.email "eununcalembro@gmail.com"
+git config --list
+cat ~/.gitconfig
+
+
+
+
+TiledMap worldMap = new TiledMap();
+MapLayers layers = worldMap.getLayers();
+
+//Vegetacao e ambiente
+Texture imgTexturasDeTerreno = new Texture("textura_terreno.png");
+TextureRegion[][] texturasRecortadas = TextureRegion.split(imgTexturasDeTerreno, 64, 64);
+TiledMapTileLayer vegetacaoLayer = new TiledMapTileLayer(numeroTilesX, numeroTilesY, telaX, telaY);
+
+for (int x = 0; x < 30; x++)
+    for (int y = 0; y < 30; y++) {
+        if (Math.random() > 0.8) { //20 por cento de chance de criar vegetacao
+            cell = new Cell();
+            cell.setTile(new StaticTiledMapTile(texturasRecortadas[0][1]));
+            obstaclesLayer.setCell(x, y, cell);
+        }
+    }
+
+layers.add(vegetacaoLayer);
+
+
+
+
+
+Meu rascunho é estruturado em um ApplicationAdapter implentando GestureListener.
+Ele tem arquitetura similar ao CoC, pois no Batch eu tenho um IsometricTiledMapRenderer controlando um OrthographicCamera, e também um Stage com elementos fixos na tela.
+
+Pra montar meu TiledMap 30x30 de 64px eu fiz dois Layers, um com uma imagenzona de gramado no 1:1, e em cima eu populo randomicamente mais Cells com elementos de cenário.
+
+Estou com dois problemas:
+1- como tenho uma imagem grande de fundo, se faço zoom demais e background que está ná Cell 1:1 sai fora do range da Camera, o gramado some!
+2- quando faço zoom, o zoom não atualiza até que eu solte da tela, contudo, enquanto isso, a Camera se atualiza todo momento e vai sumindo as coisas das beiradas da tela até que eu solte os dedos do zoom, entende?
+
+Hi ppl. I'm starting a game for learning purpose, structurally similar to CoC, 'cause I have an isometric TileMap (with zoom and such), and fixed elements on the screen using a Actors on a Stage.
+
+1-my tile is dinamic to be random, and I had issues with zooming (cells misrendering sometimes), so I'm working on reducing elements by using bigger textures on background. Is this the best way or maybe is a problem in the way I create populate the cells in layers of my Tile?
+
+2-I use an ApplicationAdapter implementing GestureListener, not the Game class. Is this the best choice?
+
+I will appreciate any critic! Thanks in advance.
+
+
